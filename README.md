@@ -1,6 +1,5 @@
 # Backend_Traini8_RachitJain
 
-# Traini8 Spring Boot Backend
 
 ## Introduction
 This repository contains the backend code for the Traini8 application, built with Spring Boot. It includes configurations for MySQL as the database and uses Hibernate for ORM. It also features Swagger for API documentation.
