@@ -5,9 +5,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 
-import com.org.Traini8.validators.ValidCenterCode;
-import com.org.Traini8.validators.ValidContactPhone;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -22,6 +19,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /**
@@ -34,8 +32,8 @@ public class TrainingCentre {
 
     @Id
     @Column(name = "centerCode", nullable = false, length = 12)
-    @NotBlank(message = "Center code is required") // Center code should not be blank
-    @ValidCenterCode // Custom validation for center code format
+    @NotBlank(message = "Center code is required") // Ensures the center code is not blank
+    @Pattern(regexp = "^[A-Z0-9]{12}$", message = "Center code must be exactly 12 alphanumeric characters")
     private String centerCode;
 
     @Column(name = "centerName", nullable = false, length = 40)
@@ -67,8 +65,8 @@ public class TrainingCentre {
     private String contactEmail; // Email address of the center
 
     @Column(name = "contactPhone", nullable = false)
-    @NotBlank(message = "Contact phone is required") // Contact phone should not be blank
-    @ValidContactPhone // Custom validation for contact phone format
+    @NotBlank(message = "Contact phone is required") // Ensures the contact phone is not blank
+    @Pattern(regexp = "^\\+?[1-9]\\d{1,14}$", message = "Invalid contact phone format")
     private String contactPhone; // Phone number of the center
 
     // Getters and setters with detailed comments

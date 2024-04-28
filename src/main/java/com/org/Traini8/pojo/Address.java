@@ -1,9 +1,9 @@
 package com.org.Traini8.pojo;
 
-import com.org.Traini8.validators.ValidPincode;
-
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * Represents an address entity within the application. This class is used to
@@ -27,8 +27,8 @@ public class Address {
 
     @Column(name = "pincode", nullable = false, length = 6)
     @NotBlank(message = "Pincode is required") // Ensures the pincode is not blank
-    @ValidPincode // Custom validation annotation to ensure the pincode meets a specific pattern
-                  // or criteria
+    @Size(min = 6, max = 6, message = "Pincode must be exactly 6 digits")
+    @Pattern(regexp = "\\d{6}", message = "Pincode must be 6 digits")
     private String pincode;
 
     // Getters
